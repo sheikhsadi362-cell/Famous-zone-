@@ -120,5 +120,47 @@ footer p{color:#d6c9bd;font-size:13px}
   const app = initializeApp(firebaseConfig);
 </script>
 
+<section id="live-products" style="padding:20px;">
+  <h2 style="text-align:center;">Famous Zone Collection</h2>
+  <div id="products-list">Loading products...</div>
+</section>
+
+<script type="module">
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const db = getDatabase();
+const list = document.getElementById("products-list");
+
+onValue(ref(db, "products"), (snapshot) => {
+  list.innerHTML = "";
+
+  if (!snapshot.exists()) {
+    list.textContent = "No products added yet.";
+    return;
+  }
+
+  snapshot.forEach((item) => {
+    const p = item.val();
+    const card = document.createElement("div");
+    card.style.cssText = "display:inline-block;width:180px;margin:10px;padding:10px;border:1px solid #ddd;border-radius:8px;";
+
+    if (p.photo) {
+      const img = document.createElement("img");
+      img.src = p.photo;
+      img.alt = p.name || "Product";
+      img.style.cssText = "width:100%;height:180px;object-fit:cover;";
+      card.appendChild(img);
+    }
+
+    const name = document.createElement("h3");
+    name.textContent = p.name || "Product";
+    const price = document.createElement("p");
+    price.textContent = "৳" + (p.price ?? "");
+    card.append(name, price);
+    list.appendChild(card);
+  });
+});
+</script>
+
 </body>
 </html>

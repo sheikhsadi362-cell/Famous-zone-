@@ -1,178 +1,252 @@
 
+
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Famous Zone Admin</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 20px;
-      background: #f4f4f4;
-      font-family: Arial, sans-serif;
-    }
-    .panel {
-      max-width: 440px;
-      margin: 35px auto;
-      padding: 24px;
-      background: white;
-      border-radius: 14px;
-      box-shadow: 0 4px 18px #ddd;
-    }
-    h2, h3 { text-align: center; }
-    input, button {
-      width: 100%;
-      padding: 13px;
-      margin: 8px 0;
-      border-radius: 7px;
-      font-size: 16px;
-    }
-    input { border: 1px solid #ccc; }
-    button {
-      border: 0;
-      background: #111;
-      color: white;
-      cursor: pointer;
-    }
-    #adminArea { display: none; }
-    #status { overflow-wrap: anywhere; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Famous Zone Admin</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#f3f4f6;margin:0;padding:16px;color:#222}
+main{max-width:850px;margin:auto}
+.card{background:white;padding:18px;margin:14px 0;border-radius:12px;box-shadow:0 2px 8px #0001}
+input,button,select{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:7px;font-size:15px}
+button{background:#111;color:white;border:0;cursor:pointer}
+.danger{background:#c62828}
+.secondary{background:#555}
+.hidden{display:none}
+.item{border:1px solid #ddd;border-radius:8px;padding:12px;margin:10px 0;overflow-wrap:anywhere}
+.item img{width:100px;height:100px;object-fit:cover;border-radius:6px}
+.actions{display:flex;gap:8px}
+.actions button{flex:1}
+</style>
 </head>
 <body>
-  <div class="panel">
-    <h2>FAMOUS ZONE</h2>
-    <p style="text-align:center">Admin Panel</p>
+<main>
+<h1>Famous Zone</h1>
+<p>Admin Panel</p>
 
-    <div id="loginArea">
-      <h3>Admin Login</h3>
-      <input id="email" type="email" placeholder="Admin Email">
-      <input id="password" type="password" placeholder="Password">
-      <button id="loginBtn">Login</button>
-    </div>
+<div class="card" id="loginBox">
+<h2>Admin Login</h2>
+<input id="email" type="email" placeholder="Admin email">
+<input id="password" type="password" placeholder="Password">
+<button id="loginBtn">Login</button>
+<p id="loginMessage"></p>
+</div>
 
-    <div id="adminArea">
-      <h3>Add New Product</h3>
-      <input id="name" placeholder="Product Name">
-      <input id="price" type="number" min="1" placeholder="Price in BDT">
-      <input id="photo" type="url" placeholder="Product Image URL">
-      <button id="addBtn">Add Product</button>
-      <button id="logoutBtn">Logout</button>
-    </div>
+<div id="dashboard" class="hidden">
+<div class="card">
+<h2>Add / Edit Product</h2>
+<form id="productForm">
+<input id="productName" placeholder="Product name" required>
+<input id="productPrice" type="number" min="0" placeholder="Price in Taka" required>
+<input id="productPhoto" type="url" placeholder="Direct image URL (optional)">
+<button type="submit" id="saveBtn">Add Product</button>
+<button type="button" id="cancelEdit" class="secondary hidden">Cancel Edit</button>
+</form>
+<p id="productMessage"></p>
+</div>
 
-    <p id="status" role="status"></p>
-  </div>
+<div class="card">
+<h2>All Products</h2>
+<div id="productsList">Loading products...</div>
+</div>
 
-  <script type="module">
-    import { initializeApp } from
-      "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+<div class="card">
+<h2>Customer Orders</h2>
+<div id="ordersList">Order system connect korar por ekhane order dekhabe.</div>
+</div>
 
-    import {
-      getAuth,
-      signInWithEmailAndPassword,
-      onAuthStateChanged,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+<button id="logoutBtn" class="danger">Logout</button>
+</div>
+</main>
 
-    import {
-      getDatabase,
-      ref,
-      push,
-      set
-    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-database.js";
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import {
+getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+import {
+getDatabase,ref,push,set,update,remove,onValue
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-database.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyDxQ_HUxjEphialKvXm9P2r05pIb87FNy4",
-      authDomain: "famous-zone.firebaseapp.com",
-      databaseURL: "https://famous-zone-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "famous-zone",
-      storageBucket: "famous-zone.firebasestorage.app",
-      messagingSenderId: "642469736168",
-      appId: "1:642469736168:web:0831ba7583c1f68b7ba35d"
-    };
+const firebaseConfig={
+apiKey:"AIzaSyDxQ_HUxjEphialKvXm9P2r05pIb87FNy4",
+authDomain:"famous-zone.firebaseapp.com",
+databaseURL:"https://famous-zone-default-rtdb.asia-southeast1.firebasedatabase.app",
+projectId:"famous-zone",
+storageBucket:"famous-zone.firebasestorage.app",
+messagingSenderId:"642469736168",
+appId:"1:642469736168:web:0831ba7583c1f68b7ba35d"
+};
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getDatabase(app);
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getDatabase(app);
+const ADMIN_UID="PbaNy2hBNKRJCnCEjVzuGsRow5h1";
+const $=id=>document.getElementById(id);
 
-    const loginArea = document.getElementById("loginArea");
-    const adminArea = document.getElementById("adminArea");
-    const status = document.getElementById("status");
+let editingId=null;
+let stopProducts=null;
+let stopOrders=null;
 
-    const adminUID = "PbaNy2hBNKRJCnCEjVzuGsRow5h1";
+function msg(id,text){$(id).textContent=text;}
 
-    document.getElementById("loginBtn").onclick = async () => {
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
+function resetForm(){
+editingId=null;
+$("productForm").reset();
+$("saveBtn").textContent="Add Product";
+$("cancelEdit").classList.add("hidden");
+}
 
-      if (!email || !password) {
-        status.textContent = "Email and password din.";
-        return;
-      }
+$("loginBtn").onclick=async()=>{
+msg("loginMessage","Logging in...");
+try{
+const result=await signInWithEmailAndPassword(
+auth,$("email").value.trim(),$("password").value
+);
+if(result.user.uid!==ADMIN_UID){
+await signOut(auth);
+msg("loginMessage","You are not an authorized admin.");
+}
+}catch(e){msg("loginMessage",e.message);}
+};
 
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        status.textContent = "Login successful!";
-      } catch (error) {
-        status.textContent = "Login failed: " + error.message;
-      }
-    };
+onAuthStateChanged(auth,user=>{
+if(user&&user.uid===ADMIN_UID){
+$("loginBox").classList.add("hidden");
+$("dashboard").classList.remove("hidden");
+startListeners();
+}else{
+$("loginBox").classList.remove("hidden");
+$("dashboard").classList.add("hidden");
+}
+});
 
-    onAuthStateChanged(auth, user => {
-      const isAdmin = !!user && user.uid === adminUID;
-      loginArea.style.display = isAdmin ? "none" : "block";
-      adminArea.style.display = isAdmin ? "block" : "none";
+function startListeners(){
+if(stopProducts)stopProducts();
+if(stopOrders)stopOrders();
 
-      if (user && !isAdmin) {
-        status.textContent = "This account is not an authorized admin.";
-      } else if (!user) {
-        status.textContent = "Please log in with your admin account.";
-      }
-    });
+stopProducts=onValue(ref(db,"products"),snap=>{
+renderProducts(snap.val()||{});
+},error=>msg("productMessage",error.message));
 
-    document.getElementById("addBtn").onclick = async () => {
-      const name = document.getElementById("name").value.trim();
-      const priceText = document.getElementById("price").value;
-      const price = Number(priceText);
-      const photo = document.getElementById("photo").value.trim();
+stopOrders=onValue(ref(db,"orders"),snap=>{
+const orders=snap.val()||{};
+const box=$("ordersList");
+box.replaceChildren();
+const entries=Object.entries(orders);
+if(!entries.length){
+box.textContent="No orders found.";
+return;
+}
+entries.forEach(([id,o])=>{
+const item=document.createElement("div");
+item.className="item";
+const title=document.createElement("h3");
+title.textContent=o.customerName||o.name||"Customer order";
+const info=document.createElement("p");
+info.textContent="Phone: "+(o.phone||"-")+" | Address: "+(o.address||"-");
+const status=document.createElement("select");
+["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].forEach(s=>{
+const opt=document.createElement("option");
+opt.value=s;opt.textContent=s;
+if((o.status||"Pending")===s)opt.selected=true;
+status.append(opt);
+});
+status.onchange=async()=>{
+try{await update(ref(db,"orders/"+id),{status:status.value});}
+catch(e){alert("Order update failed: "+e.message);}
+};
+item.append(title,info,status);
+box.append(item);
+});
+},error=>{
+$("ordersList").textContent="Orders database rules need to be configured.";
+});
+}
 
-      if (
-        !name ||
-        !priceText ||
-        !Number.isFinite(price) ||
-        price <= 0 ||
-        !photo
-      ) {
-        status.textContent = "Enter product name, valid price and image URL.";
-        return;
-      }
+function renderProducts(products){
+const box=$("productsList");
+box.replaceChildren();
+const entries=Object.entries(products);
+if(!entries.length){
+box.textContent="No products yet.";
+return;
+}
+entries.forEach(([id,p])=>{
+const item=document.createElement("div");
+item.className="item";
+if(p.photo){
+const img=document.createElement("img");
+img.src=p.photo;img.alt=p.name||"Product";
+img.onerror=()=>img.style.display="none";
+item.append(img);
+}
+const title=document.createElement("h3");
+title.textContent=p.name||"Product";
+const price=document.createElement("p");
+price.textContent="Price: ৳"+(p.price??"");
+const actions=document.createElement("div");
+actions.className="actions";
+const edit=document.createElement("button");
+edit.textContent="Edit";
+edit.onclick=()=>{
+editingId=id;
+$("productName").value=p.name||"";
+$("productPrice").value=p.price??"";
+$("productPhoto").value=p.photo||"";
+$("saveBtn").textContent="Update Product";
+$("cancelEdit").classList.remove("hidden");
+window.scrollTo({top:0,behavior:"smooth"});
+};
+const del=document.createElement("button");
+del.textContent="Delete";
+del.className="danger";
+del.onclick=async()=>{
+if(!confirm("Delete this product?"))return;
+try{
+await remove(ref(db,"products/"+id));
+msg("productMessage","Product deleted.");
+if(editingId===id)resetForm();
+}catch(e){msg("productMessage",e.message);}
+};
+actions.append(edit,del);
+item.append(title,price,actions);
+box.append(item);
+});
+}
 
-      try {
-        const productRef = push(ref(db, "products"));
-        await set(productRef, {
-          name: name,
-          price: price,
-          photo: photo
-        });
+$("productForm").onsubmit=async e=>{
+e.preventDefault();
+const name=$("productName").value.trim();
+const price=Number($("productPrice").value);
+const photo=$("productPhoto").value.trim();
+if(!name||price<0||!Number.isFinite(price))return;
+$("saveBtn").disabled=true;
+try{
+const data={name,price,photo};
+if(editingId){
+await update(ref(db,"products/"+editingId),data);
+msg("productMessage","Product updated successfully.");
+}else{
+await set(push(ref(db,"products")),data);
+msg("productMessage","Product added successfully.");
+}
+resetForm();
+}catch(e){msg("productMessage","Error: "+e.message);}
+finally{$("saveBtn").disabled=false;}
+};
 
-        status.textContent = "Product added successfully!";
-        document.getElementById("name").value = "";
-        document.getElementById("price").value = "";
-        document.getElementById("photo").value = "";
-      } catch (error) {
-        status.textContent = "Could not add product: " + error.message;
-      }
-    };
+$("cancelEdit").onclick=resetForm;
 
-    document.getElementById("logoutBtn").onclick = async () => {
-      try {
-        await signOut(auth);
-        status.textContent = "Logged out.";
-      } catch (error) {
-        status.textContent = error.message;
-      }
-    };
-  </script>
+$("logoutBtn").onclick=async()=>{
+if(stopProducts)stopProducts();
+if(stopOrders)stopOrders();
+await signOut(auth);
+};
+
+</script>
 </body>
 </html>

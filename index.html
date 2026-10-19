@@ -5,162 +5,166 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#171715">
 <title>Famous Zone | Trendy Fashion</title>
+
 <style>
-:root{--ink:#171715;--cream:#f7f1e9;--sand:#e8d8c7;--muted:#6d6862;--accent:#b58c67}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff}
+body{margin:0;font-family:Arial,sans-serif;color:#171715;background:#fff}
+header{background:#171715;color:#fff;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font-size:25px;font-weight:bold;font-family:Georgia,serif}
+.logo small{display:block;font:10px Arial;letter-spacing:2px;color:#e5c8a9;margin-top:5px}
+nav{display:flex;gap:18px;font-size:14px}
 a{color:inherit;text-decoration:none}
-.topbar{background:var(--ink);color:#fff;padding:15px 5%;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.brand{font-family:Georgia,serif;font-size:clamp(22px,3vw,32px);font-weight:bold;white-space:nowrap}
-.brand small{display:block;font:9px Arial,sans-serif;letter-spacing:2px;color:#e5c8a9;margin-top:3px}
-nav{display:flex;gap:24px;font-size:14px}
-nav a:hover{color:#e5c8a9}
-.hero{display:grid;grid-template-columns:1fr 1fr;min-height:390px;background:var(--cream);overflow:hidden}
-.hero-copy{padding:clamp(30px,6vw,78px) 8%;align-self:center}
-.eyebrow{font-family:Georgia,serif;font-style:italic;font-size:clamp(22px,3vw,34px);margin:0 0 8px}
-h1{font-family:Georgia,serif;font-size:clamp(42px,6vw,76px);line-height:.98;margin:0 0 16px}
-.tagline{letter-spacing:3px;font-size:12px;font-weight:bold}
-.hero p{line-height:1.7;color:#4e4943;max-width:440px}
-.btn{display:inline-block;background:var(--ink);color:#fff;padding:13px 22px;border-radius:30px;font-weight:bold;font-size:14px;margin-top:10px}
-.hero-image{min-height:320px;background:linear-gradient(90deg,rgba(247,241,233,.08),rgba(23,23,21,.05)),url('https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=85') center 35%/cover}
-.categories{display:flex;justify-content:center;gap:clamp(12px,3vw,35px);padding:25px 5%;flex-wrap:wrap}
-.cat{width:88px;text-align:center;font-size:13px}
-.cat img{width:76px;height:76px;object-fit:cover;border-radius:50%;background:var(--cream);display:block;margin:0 auto 9px}
-.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;background:#f8f5f0;padding:22px 5%;text-align:center}
-.benefits strong{display:block;font-size:14px;margin-bottom:4px}
-.benefits span{font-size:12px;color:var(--muted)}
-.section{padding:42px 5% 55px}
-.section-heading{text-align:center;margin-bottom:25px}
-.section-heading h2{font: bold clamp(28px,4vw,38px) Georgia,serif;margin:0 0 8px}
-.section-heading p{color:var(--muted);margin:0}
-.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;max-width:1200px;margin:auto}
-.product{border:1px solid #eee8e0;border-radius:8px;overflow:hidden;box-shadow:0 3px 12px #00000008}
-.product img{width:100%;height:260px;object-fit:cover;display:block;background:var(--cream)}
-.product-info{padding:12px}
-.product h3{font-size:14px;margin:0 0 8px}
-.price{font-weight:bold;margin-bottom:10px}
-.order{display:block;text-align:center;background:#171715;color:white;border-radius:5px;padding:11px 8px;font-size:12px;font-weight:bold}
-.note{text-align:center;color:var(--muted);font-size:12px;margin-top:18px}
-.promo{background:var(--cream);text-align:center;padding:36px 18px}
-.promo h2{font: bold 30px Georgia,serif;margin:0 0 10px}
-footer{background:var(--ink);color:#fff;padding:30px 5%;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-footer p{color:#d6c9bd;font-size:13px}
-.floating{position:fixed;right:18px;bottom:18px;background:#087cf0;color:white;padding:13px 17px;border-radius:28px;box-shadow:0 5px 18px #0003;font-size:13px;font-weight:bold}
-@media(max-width:800px){nav{gap:12px;font-size:12px}.hero{grid-template-columns:1fr}.hero-copy{padding:38px 7%}.hero-image{min-height:300px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.product img{height:230px}.benefits{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.topbar{padding:14px 5%;align-items:flex-start}.brand{font-size:22px}nav{display:none}.hero-image{min-height:260px}.categories{gap:16px 10px}.cat{width:76px}.cat img{width:66px;height:66px}.section{padding:34px 4%}.product img{height:190px}.product-info{padding:9px}.product h3{font-size:12px}.price{font-size:13px}.order{font-size:11px;padding:10px 4px}.floating{right:10px;bottom:10px}}
+.hero{background:#f7f1e9;padding:65px 7%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:25px}
+.hero h1{font: bold clamp(40px,6vw,70px) Georgia,serif;margin:12px 0}
+.hero p{line-height:1.7;color:#555}
+.hero img{width:100%;height:330px;object-fit:cover;border-radius:8px}
+.btn{display:inline-block;background:#171715;color:white;padding:13px 22px;border-radius:25px;margin-top:10px}
+.section{padding:40px 5%}
+.heading{text-align:center;margin-bottom:25px}
+.heading h2{font: bold 32px Georgia,serif;margin-bottom:8px}
+.heading p{color:#777}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.product{border:1px solid #eee;border-radius:8px;overflow:hidden}
+.product img{width:100%;height:250px;object-fit:cover;display:block;background:#f7f1e9}
+.info{padding:12px}
+.info h3{font-size:15px;margin:0 0 9px}
+.price{font-weight:bold;margin-bottom:12px}
+.order{display:block;text-align:center;background:#171715;color:#fff;padding:11px 5px;border-radius:5px;font-size:13px}
+.status{text-align:center;color:#777;padding:20px}
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:center;background:#f8f5f0;padding:25px 5%}
+.benefits strong{display:block;margin-bottom:6px}
+.benefits span{font-size:12px;color:#666}
+footer{background:#171715;color:#fff;padding:30px 5%;text-align:center}
+footer p{color:#ddd;font-size:13px}
+@media(max-width:750px){
+ header{align-items:flex-start;flex-direction:column}
+ nav{flex-wrap:wrap}
+ .hero{grid-template-columns:1fr;padding:35px 6%}
+ .hero img{height:260px}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .product img{height:210px}
+ .benefits{grid-template-columns:repeat(2,1fr)}
+ .heading h2{font-size:27px}
+}
+@media(max-width:380px){.product img{height:165px}.info{padding:8px}}
 </style>
 </head>
+
 <body>
-<header class="topbar">
-  <a class="brand" href="#">♛ Famous Zone<small>TRENDY FASHION. BEAUTIFUL YOU.</small></a>
-  <nav><a href="#home">Home</a><a href="#shop">Shop</a><a href="#new">New Arrivals</a><a href="#about">About</a></nav>
+<header>
+  <a class="logo" href="#">♛ Famous Zone
+    <small>TRENDY FASHION. BEAUTIFUL YOU.</small>
+  </a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#about">About</a>
+  </nav>
 </header>
+
 <main>
 <section class="hero" id="home">
-  <div class="hero-copy">
-    <p class="eyebrow">Welcome to</p>
+  <div>
+    <p>WELCOME TO OUR FASHION STORE</p>
     <h1>Famous Zone</h1>
-    <div class="tagline">TRENDY FASHION. BEAUTIFUL YOU.</div>
-    <p>Discover your next favourite look. Explore sarees, three-piece sets, dresses and more—styles made for you.</p>
+    <p>Discover your favourite sarees, three-piece sets and trendy outfits. Find your style with Famous Zone.</p>
     <a class="btn" href="#shop">Shop Collection →</a>
   </div>
-  <div class="hero-image" role="img" aria-label="Fashion collection banner"></div>
+  <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80" alt="Fashion collection">
 </section>
-<section class="categories" aria-label="Categories">
-  <a class="cat" href="#shop"><img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=240&q=80" alt="Saree"><span>Saree →</span></a>
-  <a class="cat" href="#shop"><img src="https://images.unsplash.com/photo-1583391733956-6c78276477e3?auto=format&fit=crop&w=240&q=80" alt="Three piece"><span>Three Piece →</span></a>
-  <a class="cat" href="#shop"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=240&q=80" alt="Dress"><span>Dress →</span></a>
-  <a class="cat" href="#shop"><img src="https://images.unsplash.com/photo-1598554747436-c9293d6a588f?auto=format&fit=crop&w=240&q=80" alt="Fashion"><span>New Arrivals →</span></a>
-</section>
+
 <section class="benefits" id="about">
-  <div><strong>🚚 Delivery Available</strong><span>Ask us about delivery areas</span></div>
-  <div><strong>✦ Quality Styles</strong><span>Choose your favourite look</span></div>
-  <div><strong>↺ Order Support</strong><span>Message us for help</span></div>
-  <div><strong>♡ Need Help?</strong><span>We're happy to help</span></div>
+  <div><strong>🚚 Delivery</strong><span>Ask us about delivery</span></div>
+  <div><strong>✦ Quality Styles</strong><span>Fashion for you</span></div>
+  <div><strong>♡ Order Support</strong><span>We're here to help</span></div>
+  <div><strong>✉ Contact Us</strong><span>Order through Messenger</span></div>
 </section>
+
 <section class="section" id="shop">
-  <div class="section-heading"><h2>Our Latest Collection</h2><p>Trendy styles, just for you</p></div>
-  <div class="products">
-    <article class="product"><img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=700&q=85" alt="Saree product"><div class="product-info"><h3>Elegant Saree</h3><div class="price">৳ Add price</div><a class="order" href="#contact">💬 Order via Messenger</a></div></article>
-    <article class="product"><img src="https://images.unsplash.com/photo-1583391733956-6c78276477e3?auto=format&fit=crop&w=700&q=85" alt="Three piece product"><div class="product-info"><h3>Three-Piece Set</h3><div class="price">৳ Add price</div><a class="order" href="#contact">💬 Order via Messenger</a></div></article>
-    <article class="product"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=700&q=85" alt="Dress product"><div class="product-info"><h3>Everyday Dress</h3><div class="price">৳ Add price</div><a class="order" href="#contact">💬 Order via Messenger</a></div></article>
-    <article class="product"><img src="https://images.unsplash.com/photo-1598554747436-c9293d6a588f?auto=format&fit=crop&w=700&q=85" alt="Fashion top product"><div class="product-info"><h3>Stylish Outfit</h3><div class="price">৳ Add price</div><a class="order" href="#contact">💬 Order via Messenger</a></div></article>
+  <div class="heading">
+    <h2>Our Latest Collection</h2>
+    <p>Explore our latest fashion products</p>
   </div>
-  <p class="note">Sample products shown for layout. Replace the photos, names and prices with your real items before publishing.</p>
+  <div class="products" id="products-list">
+    <p class="status">Loading products...</p>
+  </div>
 </section>
-<section class="promo" id="new"><h2>Find Your New Favourite</h2><p>Fresh styles, lovely details, and fashion for every day.</p><a class="btn" href="#shop">Explore Collection</a></section>
 </main>
-<footer id="contact"><div><div class="brand">♛ Famous Zone<small>TRENDY FASHION. BEAUTIFUL YOU.</small></div><p>Fashion that feels like you.</p></div><div><strong>Stay Connected</strong><p>Add your Facebook Page and Messenger link here before publishing.</p></div></footer>
-<a class="floating" href="#contact" aria-label="Order via Messenger">● Order via Messenger</a>
 
-<div style="text-align:center; margin:20px 0;">
-  <a href="https://www.facebook.com/messages/t/105522268102065" target="_blank" style="display:inline-block; background:#1877F2; color:white; padding:14px 24px; border-radius:8px; text-decoration:none; font-weight:bold;">
-    Order Now on Messenger
-  </a>
-</div>
-<script type="module">
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-database.js";
-import { getApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyDxQ_HUxjEphialKvXm9P2r05pIb87FNy4",
-    authDomain: "famous-zone.firebaseapp.com",
-    databaseURL: "https://famous-zone-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "famous-zone",
-    storageBucket: "famous-zone.firebasestorage.app",
-    messagingSenderId: "642469736168",
-    appId: "1:642469736168:web:0831ba7583c1f68b7ba35d"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-</script>
-
-<section id="live-products" style="padding:20px;">
-  <h2 style="text-align:center;">Famous Zone Collection</h2>
-  <div id="products-list">Loading products...</div>
-</section>
+<footer>
+  <div class="logo">♛ Famous Zone</div>
+  <p>Trendy Fashion. Beautiful You.</p>
+  <a class="btn" href="https://www.facebook.com/messages/t/105522268102065" target="_blank" rel="noopener">Order Now on Messenger</a>
+  <p>© Famous Zone. All rights reserved.</p>
+</footer>
 
 <script type="module">
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-database.js";
+import { initializeApp, getApp }
+  from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import { getDatabase, ref, onValue }
+  from "https://www.gstatic.com/firebasejs/13.0.0/firebase-database.js";
 
-const db = getDatabase();
+const firebaseConfig = {
+  apiKey: "AIzaSyDxQ_HUxjEphialKvXm9P2r05pIb87FNy4",
+  authDomain: "famous-zone.firebaseapp.com",
+  databaseURL: "https://famous-zone-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "famous-zone",
+  storageBucket: "famous-zone.firebasestorage.app",
+  messagingSenderId: "642469736168",
+  appId: "1:642469736168:web:0831ba7583c1f68b7ba35d"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 const list = document.getElementById("products-list");
+const messengerURL = "https://www.facebook.com/messages/t/105522268102065";
 
 onValue(ref(db, "products"), (snapshot) => {
-  list.innerHTML = "";
+  list.replaceChildren();
 
   if (!snapshot.exists()) {
-    list.textContent = "No products added yet.";
+    list.textContent = "No products added yet. Please visit us again soon!";
     return;
   }
 
   snapshot.forEach((item) => {
     const p = item.val();
-    const card = document.createElement("div");
-    card.style.cssText = "display:inline-block;width:180px;margin:10px;padding:10px;border:1px solid #ddd;border-radius:8px;";
+    const card = document.createElement("article");
+    card.className = "product";
 
     if (p.photo) {
       const img = document.createElement("img");
       img.src = p.photo;
-      img.alt = p.name || "Product";
-      img.style.cssText = "width:100%;height:180px;object-fit:cover;";
+      img.alt = p.name || "Fashion product";
+      img.loading = "lazy";
       card.appendChild(img);
     }
 
+    const info = document.createElement("div");
+    info.className = "info";
+
     const name = document.createElement("h3");
-    name.textContent = p.name || "Product";
-    const price = document.createElement("p");
+    name.textContent = p.name || "Fashion Product";
+
+    const price = document.createElement("div");
+    price.className = "price";
     price.textContent = "৳" + (p.price ?? "");
-    card.append(name, price);
+
+    const order = document.createElement("a");
+    order.className = "order";
+    order.href = messengerURL;
+    order.target = "_blank";
+    order.rel = "noopener";
+    order.textContent = "💬 Order on Messenger";
+
+    info.append(name, price, order);
+    card.appendChild(info);
     list.appendChild(card);
   });
+}, (error) => {
+  list.textContent = "Products could not load. Please try again later.";
+  console.error("Firebase error:", error);
 });
 </script>
-
 </body>
 </html>

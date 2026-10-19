@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Famous Zone Admin</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+    .panel {
+      max-width: 440px;
+      margin: 35px auto;
+      padding: 24px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px #ddd;
+    }
+    h2, h3 { text-align: center; }
+    input, button {
+      width: 100%;
+      padding: 13px;
+      margin: 8px 0;
+      border-radius: 7px;
+      font-size: 16px;
+    }
+    input { border: 1px solid #ccc; }
+    button {
+      border: 0;
+      background: #111;
+      color: white;
+      cursor: pointer;
+    }
+    #adminArea { display: none; }
+    #status { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h2>FAMOUS ZONE</h2>
+    <p style="text-align:center">Admin Panel</p>
+
+    <div id="loginArea">
+      <h3>Admin Login</h3>
+      <input id="email" type="email" placeholder="Admin Email">
+      <input id="password" type="password" placeholder="Password">
+      <button id="loginBtn">Login</button>
+    </div>
+
+    <div id="adminArea">
+      <h3>Add New Product</h3>
+      <input id="name" placeholder="Product Name">
+      <input id="price" type="number" min="1" placeholder="Price in BDT">
+      <input id="photo" type="url" placeholder="Product Image URL">
+      <button id="addBtn">Add Product</button>
+      <button id="logoutBtn">Logout</button>
+    </div>
+
+    <p id="status" role="status"></p>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+
+    import {
+      getDatabase,
+      ref,
+      push,
+      set
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDxQ_HUxjEphialKvXm9P2r05pIb87FNy4",
+      authDomain: "famous-zone.firebaseapp.com",
+      databaseURL: "https://famous-zone-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "famous-zone",
+      storageBucket: "famous-zone.firebasestorage.app",
+      messagingSenderId: "642469736168",
+      appId: "1:642469736168:web:0831ba7583c1f68b7ba35d"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    const loginArea = document.getElementById("loginArea");
+    const adminArea = document.getElementById("adminArea");
+    const status = document.getElementById("status");
+
+    const adminUID = "PbaNy2hBNKRJCnCEjVzuGsRow5h1";
+
+    document.getElementById("loginBtn").onclick = async () => {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (!email || !password) {
+        status.textContent = "Email and password din.";
+        return;
+      }
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        status.textContent = "Login successful!";
+      } catch (error) {
+        status.textContent = "Login failed: " + error.message;
+      }
+    };
+
+    onAuthStateChanged(auth, user => {
+      const isAdmin = !!user && user.uid === adminUID;
+      loginArea.style.display = isAdmin ? "none" : "block";
+      adminArea.style.display = isAdmin ? "block" : "none";
+
+      if (user && !isAdmin) {
+        status.textContent = "This account is not an authorized admin.";
+      } else if (!user) {
+        status.textContent = "Please log in with your admin account.";
+      }
+    });
+
+    document.getElementById("addBtn").onclick = async () => {
+      const name = document.getElementById("name").value.trim();
+      const priceText = document.getElementById("price").value;
+      const price = Number(priceText);
+      const photo = document.getElementById("photo").value.trim();
+
+      if (
+        !name ||
+        !priceText ||
+        !Number.isFinite(price) ||
+        price <= 0 ||
+        !photo
+      ) {
+        status.textContent = "Enter product name, valid price and image URL.";
+        return;
+      }
+
+      try {
+        const productRef = push(ref(db, "products"));
+        await set(productRef, {
+          name: name,
+          price: price,
+          photo: photo
+        });
+
+        status.textContent = "Product added successfully!";
+        document.getElementById("name").value = "";
+        document.getElementById("price").value = "";
+        document.getElementById("photo").value = "";
+      } catch (error) {
+        status.textContent = "Could not add product: " + error.message;
+      }
+    };
+
+    document.getElementById("logoutBtn").onclick = async () => {
+      try {
+        await signOut(auth);
+        status.textContent = "Logged out.";
+      } catch (error) {
+        status.textContent = error.message;
+      }
+    };
+  </script>
+</body>
+</html>

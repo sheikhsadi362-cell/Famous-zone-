@@ -1,223 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Famous Zone | Trendy Fashion</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #faf7f1;
-      color: #222;
-    }
-    header {
-      background: #171717;
-      color: white;
-      text-align: center;
-      padding: 20px 12px;
-    }
-    header h1 { margin: 0 0 8px; }
-    header p { margin: 0; }
-    .hero {
-      padding: 35px 16px;
-      text-align: center;
-      background: #eee2d2;
-    }
-    .hero h2 { font-size: 28px; margin: 0 0 10px; }
-    .hero p { line-height: 1.5; }
-    .section-title { text-align: center; margin: 28px 0 18px; }
-    #products {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      padding: 12px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .product {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 10px #00000012;
-      padding-bottom: 14px;
-    }
-    .product img {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      background: #eee;
-    }
-    .product h3 { font-size: 16px; margin: 12px 10px 6px; }
-    .price { font-weight: bold; margin: 0 10px 12px; }
-    .order {
-      display: block;
-      text-decoration: none;
-      text-align: center;
-      background: #1877f2;
-      color: white;
-      padding: 11px 8px;
-      border-radius: 7px;
-      margin: 0 10px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-    .message {
-      text-align: center;
-      padding: 25px 15px;
-      color: #555;
-    }
-    footer {
-      background: #171717;
-      color: white;
-      text-align: center;
-      padding: 22px 12px;
-      margin-top: 30px;
-    }
-    @media (min-width: 650px) {
-      #products { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-      .product img { height: 240px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#171717">
+<meta name="description" content="Famous Zone — trendy sarees, three-piece sets, dresses and more. Order through Facebook Messenger.">
+<title>Famous Zone | Trendy Fashion</title>
+<style>
+:root{--ink:#191714;--cream:#fbf8f2;--paper:#fff;--sand:#eee4d6;--gold:#b38a50;--muted:#716b62;--line:#e8dfd2;--blue:#1877f2;--green:#287a50}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif}img{max-width:100%;display:block}a{color:inherit}button,input,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}.announcement{background:var(--ink);color:#fff;text-align:center;padding:9px 12px;font-size:11px;letter-spacing:1.4px}.site-header{position:sticky;top:0;z-index:50;background:rgba(251,248,242,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}.header-inner{max-width:1240px;margin:auto;min-height:72px;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{text-decoration:none;font-family:Georgia,serif;font-size:25px;font-weight:bold;white-space:nowrap}.logo .crown{color:var(--gold)}.desktop-nav{display:flex;align-items:center;gap:22px}.desktop-nav a{text-decoration:none;font-size:13px}.desktop-nav a:hover{color:var(--gold)}.btn{border:0;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;cursor:pointer;padding:13px 17px;font-size:12px;font-weight:bold;letter-spacing:.25px;transition:transform .18s,opacity .18s}.btn:hover{transform:translateY(-1px);opacity:.92}.btn-dark{background:var(--ink);color:white}.btn-blue{background:var(--blue);color:white}.btn-light{background:white;color:var(--ink)}.hero-wrap{max-width:1240px;margin:auto;padding:22px}.hero{min-height:450px;border-radius:5px;overflow:hidden;position:relative;display:flex;align-items:center;background:#5b4b3b url('https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1800&q=85') center 40%/cover no-repeat;color:white}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,15,13,.82),rgba(17,15,13,.42) 52%,rgba(17,15,13,.08))}.hero-copy{position:relative;padding:45px;max-width:650px}.eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:10px;color:#e5c798}.hero h1{font:normal clamp(38px,5.5vw,68px)/1.04 Georgia,serif;margin:16px 0}.hero p{max-width:440px;color:#f4ede4;font-size:14px;line-height:1.8}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.benefits{max-width:1196px;margin:0 auto;padding:0 22px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.benefit{background:#fffdf9;border:1px solid var(--line);padding:18px 10px;text-align:center;border-radius:4px}.benefit b{display:block;font-size:13px;margin-bottom:6px}.benefit span{font-size:11px;color:var(--muted)}.section{max-width:1240px;margin:auto;padding:44px 22px}.section-title{text-align:center;margin-bottom:24px}.section-title .eyebrow{color:var(--gold)}.section-title h2{font:normal 34px Georgia,serif;margin:9px 0}.section-title p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.category{height:180px;position:relative;display:flex;align-items:flex-end;padding:18px;border-radius:4px;overflow:hidden;text-decoration:none;background:#c9b9a3 center/cover no-repeat}.category:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.68))}.category span{z-index:1;color:white;font:normal 23px Georgia,serif}.shop-tools{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:0 0 20px;flex-wrap:wrap}.search{flex:1;min-width:180px;max-width:440px;border:1px solid var(--line);background:white;border-radius:3px;padding:12px 13px;outline-color:var(--gold)}.sort{border:1px solid var(--line);background:white;border-radius:3px;padding:12px;max-width:100%}.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}.filter{background:white;border:1px solid var(--line);padding:9px 13px;border-radius:25px;font-size:11px;cursor:pointer}.filter.active{background:var(--ink);color:white;border-color:var(--ink)}.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}.product{background:white;border:1px solid var(--line);border-radius:4px;overflow:hidden;min-width:0;display:flex;flex-direction:column}.product-image{position:relative;aspect-ratio:3/4;background:#eee5d9;overflow:hidden}.product-image img{width:100%;height:100%;object-fit:cover;transition:transform .35s}.product:hover .product-image img{transform:scale(1.035)}.tag{position:absolute;top:10px;left:10px;background:#fffaf4;padding:6px 8px;font-size:9px;letter-spacing:1px;text-transform:uppercase}.product-info{padding:13px;display:flex;flex-direction:column;flex:1}.product h3{font:normal 17px Georgia,serif;margin:0 0 8px;overflow-wrap:anywhere}.product-desc{font-size:11px;line-height:1.5;color:var(--muted);margin:0 0 10px}.price{font-weight:bold;font-size:14px;margin:0 0 13px}.product-info .btn{margin-top:auto;width:100%;padding:12px 8px}.status{grid-column:1/-1;text-align:center;padding:30px 15px;border:1px dashed var(--line);background:white;color:var(--muted);line-height:1.7;border-radius:4px}.status strong{display:block;color:var(--ink);margin-bottom:6px}.about{background:var(--sand);text-align:center;padding:42px 22px}.about-inner{max-width:720px;margin:auto}.about h2{font:normal 32px Georgia,serif;margin:0 0 12px}.about p{font-size:13px;line-height:1.9;color:#514b43}.footer{background:var(--ink);color:white;text-align:center;padding:32px 15px}.footer p{font-size:12px;line-height:1.8;color:#d1c9be}.footer .logo{display:inline-block}.floating{position:fixed;right:16px;bottom:15px;z-index:40;box-shadow:0 5px 20px #0003;border-radius:30px;padding:14px 18px}.toast{position:fixed;left:50%;bottom:78px;transform:translateX(-50%);z-index:60;max-width:90%;padding:12px 16px;background:#24211d;color:white;border-radius:4px;font-size:12px;display:none}.toast.show{display:block}.modal-backdrop{position:fixed;inset:0;background:#0008;z-index:80;display:none;align-items:center;justify-content:center;padding:16px}.modal-backdrop.open{display:flex}.modal{background:white;width:min(100%,480px);max-height:90vh;overflow:auto;border-radius:6px;padding:22px}.modal-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.modal h3{font:normal 25px Georgia,serif;margin:0}.close{border:0;background:#f2eee8;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:20px}.modal p{color:var(--muted);font-size:12px;line-height:1.6}.form-row{margin:13px 0}.form-row label{display:block;font-size:12px;font-weight:bold;margin-bottom:6px}.form-row input,.form-row select{width:100%;padding:12px;border:1px solid var(--line);border-radius:3px;background:white}.modal .btn{width:100%;margin-top:8px}.fineprint{font-size:10px!important}.hide{display:none!important}
+@media(max-width:800px){.header-inner{padding:12px 15px}.desktop-nav{gap:12px}.desktop-nav a:not(.header-message){display:none}.logo{font-size:22px}.hero-wrap{padding:13px}.hero{min-height:390px;background-position:58% center}.hero-copy{padding:26px 22px}.hero h1{font-size:43px}.benefits{padding:0 13px;grid-template-columns:repeat(2,1fr);gap:8px}.benefit{padding:14px 6px}.section{padding:34px 13px}.categories{grid-template-columns:repeat(2,1fr);gap:9px}.category{height:145px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-info{padding:10px}.product h3{font-size:15px}.product .btn{font-size:10px}.section-title h2{font-size:29px}.shop-tools{align-items:stretch}.search{max-width:none}.sort{width:100%}.floating{right:10px;bottom:10px;padding:12px 14px}}
+@media(max-width:360px){.hero h1{font-size:36px}.actions .btn{width:100%}.logo{font-size:19px}.header-message{padding:10px;font-size:10px}}
+</style>
 </head>
 <body>
-
-<header>
-  <h1>♛ Famous Zone</h1>
-  <p>TRENDY FASHION. BEAUTIFUL YOU.</p>
-</header>
-
-<section class="hero">
-  <h2>Discover Your Style</h2>
-  <p>Beautiful Sarees, Three Piece Sets, Dresses & More.</p>
-  <a class="order"
-     style="display:inline-block;margin:10px auto;"
-     href="https://www.facebook.com/messages/t/105522268102065"
-     target="_blank" rel="noopener">
-    Order on Messenger
-  </a>
+<div class="announcement">NEW STYLES • EASY ORDERING • FRIENDLY SUPPORT</div>
+<header class="site-header"><div class="header-inner">
+<a class="logo" href="#home"><span class="crown">♛</span> Famous Zone</a>
+<nav class="desktop-nav"><a href="#home">Home</a><a href="#categories">Collections</a><a href="#shop">Shop</a><a href="#about">About</a><a class="btn btn-dark header-message" href="https://www.facebook.com/messages/t/105522268102065" target="_blank" rel="noopener">MESSAGE US</a></nav>
+</div></header>
+<main>
+<section class="hero-wrap" id="home"><div class="hero"><div class="hero-copy">
+<div class="eyebrow">Style made for you</div><h1>Feel Beautiful.<br>Look Unforgettable.</h1>
+<p>Discover elegant sarees, beautiful three-piece sets, dresses and everyday favourites — chosen for your style.</p>
+<div class="actions"><a class="btn btn-light" href="#shop">EXPLORE COLLECTION</a><a class="btn btn-blue" href="https://www.facebook.com/messages/t/105522268102065" target="_blank" rel="noopener">ORDER ON MESSENGER ↗</a></div>
+</div></div></section>
+<section class="benefits"><div class="benefit"><b>Delivery Available</b><span>Ask us about delivery</span></div><div class="benefit"><b>Quality Styles</b><span>Fashion for every occasion</span></div><div class="benefit"><b>Order Support</b><span>We reply through Messenger</span></div><div class="benefit"><b>Easy Ordering</b><span>Message us to order</span></div></section>
+<section class="section" id="categories"><div class="section-title"><div class="eyebrow">Find your favourite</div><h2>Shop by Collection</h2><p>Explore the styles you love.</p></div>
+<div class="categories">
+<a class="category" href="#shop" style="background-image:url('https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=700&q=80')"><span>Sarees</span></a>
+<a class="category" href="#shop" style="background-image:url('https://images.unsplash.com/photo-1583391733956-6c78276477e3?auto=format&fit=crop&w=700&q=80')"><span>Three Piece</span></a>
+<a class="category" href="#shop" style="background-image:url('https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=700&q=80')"><span>Dresses</span></a>
+<a class="category" href="#shop" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80')"><span>New Arrivals</span></a>
+</div></section>
+<section class="section" id="shop"><div class="section-title"><div class="eyebrow">Selected for you</div><h2>Our Collection</h2><p>Search, filter and choose an item. Place your order through Messenger.</p></div>
+<div class="shop-tools"><input class="search" id="search" type="search" placeholder="Search products…" aria-label="Search products"><select class="sort" id="sort" aria-label="Sort products"><option value="default">Sort: Featured</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option><option value="az">Name: A to Z</option></select></div>
+<div class="filters" id="filters"><button class="filter active" data-category="All">All</button><button class="filter" data-category="Saree">Saree</button><button class="filter" data-category="Three Piece">Three Piece</button><button class="filter" data-category="Dress">Dress</button><button class="filter" data-category="New Arrivals">New Arrivals</button></div>
+<div class="product-grid" id="products"><div class="status"><strong>Loading collection…</strong>Please wait while the latest products load.</div></div>
+<p style="text-align:center;font-size:11px;color:var(--muted);line-height:1.7;margin-top:15px">Availability, sizes, colours and delivery details are confirmed through Messenger.</p>
 </section>
-
-<h2 class="section-title">Our Collection</h2>
-
-<div id="products">
-  <p class="message">Loading products...</p>
-</div>
-
-<footer>
-  <h3>Famous Zone</h3>
-  <p>Fashion that feels like you.</p>
-  <p>Order support available through Facebook Messenger.</p>
-</footer>
-
+<section class="about" id="about"><div class="about-inner"><h2>Fashion that feels like you.</h2><p>Welcome to Famous Zone — your place for beautiful fashion, thoughtful styles and friendly order support. Found something you love? Send us an order message and our team will help you.</p><a class="btn btn-dark" href="https://www.facebook.com/messages/t/105522268102065" target="_blank" rel="noopener">CHAT WITH FAMOUS ZONE</a></div></section>
+</main>
+<footer class="footer"><a class="logo" href="#home">♛ Famous Zone</a><p>TRENDY FASHION. BEAUTIFUL YOU.<br>Fashion that feels like you.</p><p>© <span id="year"></span> Famous Zone. All rights reserved.</p></footer>
+<a class="btn btn-blue floating" href="https://www.facebook.com/messages/t/105522268102065" target="_blank" rel="noopener">💬 Order on Messenger</a>
+<div class="toast" id="toast" role="status"></div>
+<div class="modal-backdrop" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal">
+<div class="modal-head"><h3 id="modalTitle">Order on Messenger</h3><button class="close" id="closeModal" aria-label="Close">×</button></div>
+<p id="selectedProduct">Tell us a few details. We’ll open your Facebook Page inbox so you can send the order.</p>
+<form id="orderForm">
+<div class="form-row"><label for="customerName">Your name *</label><input id="customerName" required maxlength="80" autocomplete="name" placeholder="Enter your name"></div>
+<div class="form-row"><label for="customerPhone">Phone number *</label><input id="customerPhone" required maxlength="25" autocomplete="tel" inputmode="tel" placeholder="01XXXXXXXXX"></div>
+<div class="form-row"><label for="customerAddress">Delivery address *</label><input id="customerAddress" required maxlength="220" autocomplete="street-address" placeholder="Area, road and house"></div>
+<div class="form-row"><label for="customerSize">Size / colour (optional)</label><input id="customerSize" maxlength="100" placeholder="Your preferred size or colour"></div>
+<button class="btn btn-blue" type="submit">CONTINUE TO MESSENGER ↗</button>
+<p class="fineprint">Your browser cannot send a Facebook message automatically. Copy the prepared order message, paste it into Messenger, then press Send.</p>
+</form>
+</div></div>
 <script type="module">
-  import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-  import { getDatabase, ref, onValue }
-    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyDxQ_HUxjEphialKvXm9P2r05pIb87FNy4",
+  authDomain: "famous-zone.firebaseapp.com",
+  databaseURL: "https://famous-zone-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "famous-zone",
+  storageBucket: "famous-zone.firebasestorage.app",
+  messagingSenderId: "642469736168",
+  appId: "1:642469736168:web:0831ba7583c1f68b7ba35d"
+};
+const MESSENGER = "https://www.facebook.com/messages/t/105522268102065";
+const FALLBACK = [
+ {id:"sample-saree",name:"Elegant Saree",price:0,category:"Saree",description:"Ask us about available colours and designs.",photo:"https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=85",sample:true},
+ {id:"sample-threepiece",name:"Three-Piece Set",price:0,category:"Three Piece",description:"Message us for current styles and prices.",photo:"https://images.unsplash.com/photo-1583391733956-6c78276477e3?auto=format&fit=crop&w=800&q=85",sample:true},
+ {id:"sample-dress",name:"Everyday Dress",price:0,category:"Dress",description:"Ask about sizes, colours and availability.",photo:"https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=85",sample:true},
+ {id:"sample-new",name:"New Season Style",price:0,category:"New Arrivals",description:"Contact us to see the latest arrivals.",photo:"https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=85",sample:true}
+];
+let allProducts = [];
+let activeCategory = "All";
+let chosenProduct = null;
+const productBox = document.getElementById("products");
+const searchInput = document.getElementById("search");
+const sortSelect = document.getElementById("sort");
+const modal = document.getElementById("orderModal");
+const toast = document.getElementById("toast");
+document.getElementById("year").textContent = new Date().getFullYear();
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDxQ_HUxjEphialKvXm9P2r05pIb87FNy4",
-    authDomain: "famous-zone.firebaseapp.com",
-    databaseURL: "https://famous-zone-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "famous-zone",
-    storageBucket: "famous-zone.firebasestorage.app",
-    messagingSenderId: "642469736168",
-    appId: "1:642469736168:web:0831ba7583c1f68b7ba35d"
-  };
-
-  const container = document.getElementById("products");
-  const messengerURL =
-    "https://www.facebook.com/messages/t/105522268102065";
-
-  function showError(message) {
-    container.innerHTML = "";
-    const p = document.createElement("p");
-    p.className = "message";
-    p.textContent = message;
-    container.appendChild(p);
-  }
-
-  function addText(parent, tag, value, className) {
-    const el = document.createElement(tag);
-    el.textContent = value ?? "";
-    if (className) el.className = className;
-    parent.appendChild(el);
-    return el;
-  }
-
-  function renderProducts(data) {
-    container.innerHTML = "";
-
-    if (!data || Object.keys(data).length === 0) {
-      showError("No products available yet. Please check back soon.");
-      return;
-    }
-
-    Object.entries(data).forEach(([id, product]) => {
-      if (!product || typeof product !== "object") return;
-
-      const card = document.createElement("article");
-      card.className = "product";
-
-      if (product.photo) {
-        const img = document.createElement("img");
-        img.src = product.photo;
-        img.alt = product.name || "Famous Zone product";
-        img.loading = "lazy";
-        img.onerror = () => {
-          img.style.display = "none";
-        };
-        card.appendChild(img);
-      }
-
-      addText(card, "h3", product.name || "Fashion Item");
-      addText(
-        card,
-        "p",
-        product.price !== undefined && product.price !== ""
-          ? "৳ " + product.price
-          : "Price জানতে Messenger করুন",
-        "price"
-      );
-
-      const order = document.createElement("a");
-      order.className = "order";
-      order.href = messengerURL;
-      order.target = "_blank";
-      order.rel = "noopener";
-      order.textContent = "Order on Messenger";
-      card.appendChild(order);
-
-      container.appendChild(card);
-    });
-
-    if (!container.children.length) {
-      showError("No valid products found. Check your product data.");
-    }
-  }
-
-  try {
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-
-    onValue(
-      ref(db, "products"),
-      (snapshot) => renderProducts(snapshot.val()),
-      (error) => {
-        console.error("Firebase read error:", error);
-        showError(
-          "Products could not load. Please check Firebase Database rules and connection."
-        );
-      }
-    );
-  } catch (error) {
-    console.error(error);
-    showError("Website setup error. Please check the Firebase configuration.");
-  }
+function el(tag, cls, text) {
+ const node = document.createElement(tag);
+ if (cls) node.className = cls;
+ if (text !== undefined && text !== null) node.textContent = String(text);
+ return node;
+}
+function showToast(message) {
+ toast.textContent = message; toast.classList.add("show");
+ setTimeout(() => toast.classList.remove("show"), 3200);
+}
+function categoryFor(p) {
+ const raw = String(p.category || p.type || p.collection || "").toLowerCase();
+ if (raw.includes("saree") || raw.includes("sari")) return "Saree";
+ if (raw.includes("three") || raw.includes("3 piece") || raw.includes("threepiece")) return "Three Piece";
+ if (raw.includes("dress") || raw.includes("gown") || raw.includes("kurti")) return "Dress";
+ if (raw.includes("new") || raw.includes("arrival")) return "New Arrivals";
+ const name = String(p.name || p.title || "").toLowerCase();
+ if (name.includes("saree") || name.includes("sari")) return "Saree";
+ if (name.includes("three piece") || name.includes("3 piece")) return "Three Piece";
+ if (name.includes("dress") || name.includes("gown") || name.includes("kurti")) return "Dress";
+ return "New Arrivals";
+}
+function normalizeProducts(data) {
+ if (!data || typeof data !== "object") return [];
+ const entries = Array.isArray(data) ? data.map((p,i)=>[String(i),p]) : Object.entries(data);
+ return entries.filter(([,p]) => p && typeof p === "object").map(([id,p]) => {
+   let photo = p.photo || p.image || p.imageUrl || p.imageURL || p.photoURL || p.img || p.picture || "";
+   if (typeof photo === "object" && photo !== null) photo = photo.url || photo.downloadURL || "";
+   return {
+     id, name: p.name || p.title || p.productName || p.product_name || "Fashion Item",
+     price: p.price ?? p.cost ?? p.salePrice ?? "",
+     category: categoryFor(p), description: p.description || p.details || "Message us for more details.",
+     photo: typeof photo === "string" ? photo : "", sample: false
+   };
+ });
+}
+function imageFallback(category) {
+ const map = {
+  "Saree":"https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=85",
+  "Three Piece":"https://images.unsplash.com/photo-1583391733956-6c78276477e3?auto=format&fit=crop&w=800&q=85",
+  "Dress":"https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=85",
+  "New Arrivals":"https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=85"
+ };
+ return map[category] || map["New Arrivals"];
+}
+function render() {
+ const query = searchInput.value.trim().toLowerCase();
+ let list = allProducts.filter(p => (activeCategory === "All" || p.category === activeCategory) &&
+   (p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query) || p.description.toLowerCase().includes(query)));
+ const sort = sortSelect.value;
+ if (sort === "low") list.sort((a,b)=>(Number(a.price)||0)-(Number(b.price)||0));
+ if (sort === "high") list.sort((a,b)=>(Number(b.price)||0)-(Number(a.price)||0));
+ if (sort === "az") list.sort((a,b)=>a.name.localeCompare(b.name));
+ productBox.innerHTML = "";
+ if (!list.length) {
+   const state = el("div","status");
+   state.appendChild(el("strong","", "No products found"));
+   state.appendChild(document.createTextNode("Try another search or message us to ask about available styles."));
+   productBox.appendChild(state); return;
+ }
+ list.forEach(p => {
+   const card = el("article","product");
+   const imageWrap = el("div","product-image");
+   const img = el("img");
+   img.src = p.photo || imageFallback(p.category);
+   img.alt = p.name;
+   img.loading = "lazy";
+   img.onerror = () => {
+     if (img.dataset.fallbackTried !== "yes") {
+       img.dataset.fallbackTried = "yes";
+       img.src = imageFallback(p.category);
+     } else {
+       img.remove();
+       imageWrap.style.background = "linear-gradient(135deg,#eee4d6,#d7c6ae)";
+       const placeholder = el("div","","Famous Zone");
+       placeholder.style.cssText = "position:absolute;inset:0;display:grid;place-items:center;font:normal 23px Georgia,serif;color:#71604a";
+       imageWrap.appendChild(placeholder);
+     }
+   };
+   imageWrap.appendChild(img);
+   imageWrap.appendChild(el("span","tag",p.sample ? "Style example" : p.category));
+   card.appendChild(imageWrap);
+   const info = el("div","product-info");
+   info.appendChild(el("h3","",p.name));
+   info.appendChild(el("p","product-desc",p.description));
+   const priceText = p.price !== "" && p.price !== null && Number.isFinite(Number(p.price)) && Number(p.price) > 0 ? "৳ " + Number(p.price).toLocaleString("en-BD") : "Price on request";
+   info.appendChild(el("p","price",priceText));
+   const order = el("button","btn btn-blue","ORDER ON MESSENGER");
+   order.type = "button";
+   order.addEventListener("click",()=>openOrder(p));
+   info.appendChild(order);
+   card.appendChild(info);
+   productBox.appendChild(card);
+ });
+}
+function openOrder(product) {
+ chosenProduct = product;
+ document.getElementById("selectedProduct").textContent = "Selected item: " + product.name + ". Add your details, then copy the order message into Messenger.";
+ modal.classList.add("open");
+ document.body.style.overflow = "hidden";
+}
+function closeOrder() { modal.classList.remove("open"); document.body.style.overflow = ""; }
+document.getElementById("closeModal").addEventListener("click",closeOrder);
+modal.addEventListener("click",e=>{if(e.target===modal)closeOrder()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeOrder()});
+document.getElementById("orderForm").addEventListener("submit", async e => {
+ e.preventDefault();
+ if (!chosenProduct) return;
+ const name = document.getElementById("customerName").value.trim();
+ const phone = document.getElementById("customerPhone").value.trim();
+ const address = document.getElementById("customerAddress").value.trim();
+ const size = document.getElementById("customerSize").value.trim();
+ const price = chosenProduct.price && Number(chosenProduct.price)>0 ? "৳ "+chosenProduct.price : "Please confirm price";
+ const message = `Assalamu Alaikum, Famous Zone! I want to order:\nProduct: ${chosenProduct.name}\nPrice: ${price}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nSize/Colour: ${size || "Not specified"}\nPlease confirm availability and delivery charge.`;
+ let copied = false;
+ try { await navigator.clipboard.writeText(message); copied = true; } catch (_) {}
+ if (!copied) {
+   window.prompt("Copy this order message, then paste it into Messenger:", message);
+ }
+ window.open(MESSENGER, "_blank", "noopener,noreferrer");
+ closeOrder();
+ showToast(copied ? "Order message copied. Paste it into Messenger and press Send." : "Paste the order message into Messenger and press Send.");
+});
+searchInput.addEventListener("input",render);
+sortSelect.addEventListener("change",render);
+document.getElementById("filters").addEventListener("click",e=>{
+ const btn=e.target.closest("button[data-category]"); if(!btn)return;
+ activeCategory=btn.dataset.category;
+ document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b===btn));
+ render();
+});
+try {
+ const app = initializeApp(firebaseConfig);
+ const db = getDatabase(app);
+ onValue(ref(db,"products"), snapshot => {
+   const live = normalizeProducts(snapshot.val());
+   // Show real products if available. If database is empty, show styled examples instead of a stuck loading screen.
+   allProducts = live.length ? live : FALLBACK;
+   render();
+ }, error => {
+   console.error("Firebase read error:",error);
+   allProducts = FALLBACK;
+   render();
+   showToast("Showing style examples. Check Firebase rules to load your actual products.");
+ });
+} catch(error) {
+ console.error(error);
+ allProducts = FALLBACK;
+ render();
+}
 </script>
-
 </body>
 </html>

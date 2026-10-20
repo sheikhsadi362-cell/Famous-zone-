@@ -1,170 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#171715">
-<title>Famous Zone | Trendy Fashion</title>
-
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;color:#171715;background:#fff}
-header{background:#171715;color:#fff;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.logo{font-size:25px;font-weight:bold;font-family:Georgia,serif}
-.logo small{display:block;font:10px Arial;letter-spacing:2px;color:#e5c8a9;margin-top:5px}
-nav{display:flex;gap:18px;font-size:14px}
-a{color:inherit;text-decoration:none}
-.hero{background:#f7f1e9;padding:65px 7%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:25px}
-.hero h1{font: bold clamp(40px,6vw,70px) Georgia,serif;margin:12px 0}
-.hero p{line-height:1.7;color:#555}
-.hero img{width:100%;height:330px;object-fit:cover;border-radius:8px}
-.btn{display:inline-block;background:#171715;color:white;padding:13px 22px;border-radius:25px;margin-top:10px}
-.section{padding:40px 5%}
-.heading{text-align:center;margin-bottom:25px}
-.heading h2{font: bold 32px Georgia,serif;margin-bottom:8px}
-.heading p{color:#777}
-.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-.product{border:1px solid #eee;border-radius:8px;overflow:hidden}
-.product img{width:100%;height:250px;object-fit:cover;display:block;background:#f7f1e9}
-.info{padding:12px}
-.info h3{font-size:15px;margin:0 0 9px}
-.price{font-weight:bold;margin-bottom:12px}
-.order{display:block;text-align:center;background:#171715;color:#fff;padding:11px 5px;border-radius:5px;font-size:13px}
-.status{text-align:center;color:#777;padding:20px}
-.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:center;background:#f8f5f0;padding:25px 5%}
-.benefits strong{display:block;margin-bottom:6px}
-.benefits span{font-size:12px;color:#666}
-footer{background:#171715;color:#fff;padding:30px 5%;text-align:center}
-footer p{color:#ddd;font-size:13px}
-@media(max-width:750px){
- header{align-items:flex-start;flex-direction:column}
- nav{flex-wrap:wrap}
- .hero{grid-template-columns:1fr;padding:35px 6%}
- .hero img{height:260px}
- .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
- .product img{height:210px}
- .benefits{grid-template-columns:repeat(2,1fr)}
- .heading h2{font-size:27px}
-}
-@media(max-width:380px){.product img{height:165px}.info{padding:8px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Famous Zone | Trendy Fashion</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #faf7f1;
+      color: #222;
+    }
+    header {
+      background: #171717;
+      color: white;
+      text-align: center;
+      padding: 20px 12px;
+    }
+    header h1 { margin: 0 0 8px; }
+    header p { margin: 0; }
+    .hero {
+      padding: 35px 16px;
+      text-align: center;
+      background: #eee2d2;
+    }
+    .hero h2 { font-size: 28px; margin: 0 0 10px; }
+    .hero p { line-height: 1.5; }
+    .section-title { text-align: center; margin: 28px 0 18px; }
+    #products {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      padding: 12px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .product {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px #00000012;
+      padding-bottom: 14px;
+    }
+    .product img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      background: #eee;
+    }
+    .product h3 { font-size: 16px; margin: 12px 10px 6px; }
+    .price { font-weight: bold; margin: 0 10px 12px; }
+    .order {
+      display: block;
+      text-decoration: none;
+      text-align: center;
+      background: #1877f2;
+      color: white;
+      padding: 11px 8px;
+      border-radius: 7px;
+      margin: 0 10px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .message {
+      text-align: center;
+      padding: 25px 15px;
+      color: #555;
+    }
+    footer {
+      background: #171717;
+      color: white;
+      text-align: center;
+      padding: 22px 12px;
+      margin-top: 30px;
+    }
+    @media (min-width: 650px) {
+      #products { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .product img { height: 240px; }
+    }
+  </style>
 </head>
-
 <body>
+
 <header>
-  <a class="logo" href="#">♛ Famous Zone
-    <small>TRENDY FASHION. BEAUTIFUL YOU.</small>
-  </a>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#shop">Shop</a>
-    <a href="#about">About</a>
-  </nav>
+  <h1>♛ Famous Zone</h1>
+  <p>TRENDY FASHION. BEAUTIFUL YOU.</p>
 </header>
 
-<main>
-<section class="hero" id="home">
-  <div>
-    <p>WELCOME TO OUR FASHION STORE</p>
-    <h1>Famous Zone</h1>
-    <p>Discover your favourite sarees, three-piece sets and trendy outfits. Find your style with Famous Zone.</p>
-    <a class="btn" href="#shop">Shop Collection →</a>
-  </div>
-  <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80" alt="Fashion collection">
+<section class="hero">
+  <h2>Discover Your Style</h2>
+  <p>Beautiful Sarees, Three Piece Sets, Dresses & More.</p>
+  <a class="order"
+     style="display:inline-block;margin:10px auto;"
+     href="https://www.facebook.com/messages/t/105522268102065"
+     target="_blank" rel="noopener">
+    Order on Messenger
+  </a>
 </section>
 
-<section class="benefits" id="about">
-  <div><strong>🚚 Delivery</strong><span>Ask us about delivery</span></div>
-  <div><strong>✦ Quality Styles</strong><span>Fashion for you</span></div>
-  <div><strong>♡ Order Support</strong><span>We're here to help</span></div>
-  <div><strong>✉ Contact Us</strong><span>Order through Messenger</span></div>
-</section>
+<h2 class="section-title">Our Collection</h2>
 
-<section class="section" id="shop">
-  <div class="heading">
-    <h2>Our Latest Collection</h2>
-    <p>Explore our latest fashion products</p>
-  </div>
-  <div class="products" id="products-list">
-    <p class="status">Loading products...</p>
-  </div>
-</section>
-</main>
+<div id="products">
+  <p class="message">Loading products...</p>
+</div>
 
 <footer>
-  <div class="logo">♛ Famous Zone</div>
-  <p>Trendy Fashion. Beautiful You.</p>
-  <a class="btn" href="https://www.facebook.com/messages/t/105522268102065" target="_blank" rel="noopener">Order Now on Messenger</a>
-  <p>© Famous Zone. All rights reserved.</p>
+  <h3>Famous Zone</h3>
+  <p>Fashion that feels like you.</p>
+  <p>Order support available through Facebook Messenger.</p>
 </footer>
 
 <script type="module">
-import { initializeApp, getApp }
-  from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
-import { getDatabase, ref, onValue }
-  from "https://www.gstatic.com/firebasejs/13.0.0/firebase-database.js";
+  import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDxQ_HUxjEphialKvXm9P2r05pIb87FNy4",
-  authDomain: "famous-zone.firebaseapp.com",
-  databaseURL: "https://famous-zone-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "famous-zone",
-  storageBucket: "famous-zone.firebasestorage.app",
-  messagingSenderId: "642469736168",
-  appId: "1:642469736168:web:0831ba7583c1f68b7ba35d"
-};
+  import { getDatabase, ref, onValue }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const list = document.getElementById("products-list");
-const messengerURL = "https://www.facebook.com/messages/t/105522268102065";
+  const firebaseConfig = {
+    apiKey: "AIzaSyDxQ_HUxjEphialKvXm9P2r05pIb87FNy4",
+    authDomain: "famous-zone.firebaseapp.com",
+    databaseURL: "https://famous-zone-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "famous-zone",
+    storageBucket: "famous-zone.firebasestorage.app",
+    messagingSenderId: "642469736168",
+    appId: "1:642469736168:web:0831ba7583c1f68b7ba35d"
+  };
 
-onValue(ref(db, "products"), (snapshot) => {
-  list.replaceChildren();
+  const container = document.getElementById("products");
+  const messengerURL =
+    "https://www.facebook.com/messages/t/105522268102065";
 
-  if (!snapshot.exists()) {
-    list.textContent = "No products added yet. Please visit us again soon!";
-    return;
+  function showError(message) {
+    container.innerHTML = "";
+    const p = document.createElement("p");
+    p.className = "message";
+    p.textContent = message;
+    container.appendChild(p);
   }
 
-  snapshot.forEach((item) => {
-    const p = item.val();
-    const card = document.createElement("article");
-    card.className = "product";
+  function addText(parent, tag, value, className) {
+    const el = document.createElement(tag);
+    el.textContent = value ?? "";
+    if (className) el.className = className;
+    parent.appendChild(el);
+    return el;
+  }
 
-    if (p.photo) {
-      const img = document.createElement("img");
-      img.src = p.photo;
-      img.alt = p.name || "Fashion product";
-      img.loading = "lazy";
-      card.appendChild(img);
+  function renderProducts(data) {
+    container.innerHTML = "";
+
+    if (!data || Object.keys(data).length === 0) {
+      showError("No products available yet. Please check back soon.");
+      return;
     }
 
-    const info = document.createElement("div");
-    info.className = "info";
+    Object.entries(data).forEach(([id, product]) => {
+      if (!product || typeof product !== "object") return;
 
-    const name = document.createElement("h3");
-    name.textContent = p.name || "Fashion Product";
+      const card = document.createElement("article");
+      card.className = "product";
 
-    const price = document.createElement("div");
-    price.className = "price";
-    price.textContent = "৳" + (p.price ?? "");
+      if (product.photo) {
+        const img = document.createElement("img");
+        img.src = product.photo;
+        img.alt = product.name || "Famous Zone product";
+        img.loading = "lazy";
+        img.onerror = () => {
+          img.style.display = "none";
+        };
+        card.appendChild(img);
+      }
 
-    const order = document.createElement("a");
-    order.className = "order";
-    order.href = messengerURL;
-    order.target = "_blank";
-    order.rel = "noopener";
-    order.textContent = "💬 Order on Messenger";
+      addText(card, "h3", product.name || "Fashion Item");
+      addText(
+        card,
+        "p",
+        product.price !== undefined && product.price !== ""
+          ? "৳ " + product.price
+          : "Price জানতে Messenger করুন",
+        "price"
+      );
 
-    info.append(name, price, order);
-    card.appendChild(info);
-    list.appendChild(card);
-  });
-}, (error) => {
-  list.textContent = "Products could not load. Please try again later.";
-  console.error("Firebase error:", error);
-});
+      const order = document.createElement("a");
+      order.className = "order";
+      order.href = messengerURL;
+      order.target = "_blank";
+      order.rel = "noopener";
+      order.textContent = "Order on Messenger";
+      card.appendChild(order);
+
+      container.appendChild(card);
+    });
+
+    if (!container.children.length) {
+      showError("No valid products found. Check your product data.");
+    }
+  }
+
+  try {
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    onValue(
+      ref(db, "products"),
+      (snapshot) => renderProducts(snapshot.val()),
+      (error) => {
+        console.error("Firebase read error:", error);
+        showError(
+          "Products could not load. Please check Firebase Database rules and connection."
+        );
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    showError("Website setup error. Please check the Firebase configuration.");
+  }
 </script>
+
 </body>
 </html>

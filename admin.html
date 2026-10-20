@@ -1,252 +1,58 @@
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Famous Zone Admin</title>
+<!doctype html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Famous Zone Advanced Admin</title>
 <style>
-*{box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#f3f4f6;margin:0;padding:16px;color:#222}
-main{max-width:850px;margin:auto}
-.card{background:white;padding:18px;margin:14px 0;border-radius:12px;box-shadow:0 2px 8px #0001}
-input,button,select{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:7px;font-size:15px}
-button{background:#111;color:white;border:0;cursor:pointer}
-.danger{background:#c62828}
-.secondary{background:#555}
-.hidden{display:none}
-.item{border:1px solid #ddd;border-radius:8px;padding:12px;margin:10px 0;overflow-wrap:anywhere}
-.item img{width:100px;height:100px;object-fit:cover;border-radius:6px}
-.actions{display:flex;gap:8px}
-.actions button{flex:1}
-</style>
-</head>
-<body>
-<main>
-<h1>Famous Zone</h1>
-<p>Admin Panel</p>
-
-<div class="card" id="loginBox">
-<h2>Admin Login</h2>
-<input id="email" type="email" placeholder="Admin email">
-<input id="password" type="password" placeholder="Password">
-<button id="loginBtn">Login</button>
-<p id="loginMessage"></p>
+*{box-sizing:border-box}body{margin:0;background:#fbf8f3;color:#1d1b18;font:15px Arial}header{background:#171717;color:#fff;padding:16px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}h1{font-size:20px;margin:0}.wrap{max-width:1200px;margin:auto;padding:14px}.panel{background:white;border:1px solid #e8e0d5;border-radius:14px;padding:16px;margin:12px 0}.hidden{display:none!important}button{border:0;border-radius:9px;padding:10px 13px;background:#171717;color:white;font-weight:700;cursor:pointer}button.alt{background:#eee7dd;color:#171717}button.red{background:#b42318}input,select,textarea{width:100%;padding:10px;border:1px solid #d7cec2;border-radius:8px;font:inherit;background:#fffdf9}.field{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.wide{grid-column:1/-1}.actions,.tabs{display:flex;gap:8px;flex-wrap:wrap}.tabs{margin-bottom:14px}.active{background:#b58a4b}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.stat{border:1px solid #e8e0d5;background:#fff;padding:13px;border-radius:11px}.stat span{font-size:12px;color:#6e675f}.stat strong{display:block;font-size:22px;margin-top:6px;overflow-wrap:anywhere}.muted{font-size:12px;color:#746d64}.notice{padding:11px;border-radius:9px;background:#f4eee5;white-space:pre-wrap}.error{background:#fff0ee;color:#a11}.success{background:#eaf7ef;color:#176b43}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:690px}th,td{padding:10px;text-align:left;border-bottom:1px solid #eee5db;font-size:13px;vertical-align:middle}th{background:#f8f2e9}.pill{display:inline-block;background:#eee7dd;padding:4px 8px;border-radius:18px;font-size:12px}.low{background:#fff0ee;color:#a11}.login{max-width:420px;margin:30px auto}.product{display:flex;gap:8px;align-items:center}.product img{width:45px;height:56px;object-fit:cover;border-radius:6px}.check{display:flex;align-items:center;gap:8px}.check input{width:auto}@media(max-width:700px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:1fr}.wide{grid-column:auto}.wrap{padding:9px}.panel{padding:12px}}
+</style></head><body>
+<header><div><h1>♛ Famous Zone — Advanced Admin</h1><div class="muted" style="color:#ddd">Products · Orders · Sales · Coupons</div></div><div class="actions"><span id="email" class="muted" style="color:#ddd"></span><button id="logout" class="alt hidden">Logout</button></div></header>
+<div class="wrap">
+<section id="login" class="panel login"><h2>Admin Login</h2><p class="muted">Firebase Authentication admin email ও password দাও।</p><div class="field"><label>Email</label><input id="em" type="email" autocomplete="username"></div><div class="field"><label>Password</label><input id="pw" type="password" autocomplete="current-password"></div><button id="loginBtn">Login</button><p id="loginMsg" class="notice hidden"></p></section>
+<section id="app" class="hidden">
+<div class="stats">
+<div class="stat"><span>Total Products</span><strong id="total">0</strong></div><div class="stat"><span>Featured Products</span><strong id="featured">0</strong></div><div class="stat"><span>Low / Out of Stock</span><strong id="low">0</strong></div><div class="stat"><span>Orders in database</span><strong id="orderCount">0</strong></div>
+<div class="stat"><span>Gross Sales (Delivered)</span><strong id="sales">৳0</strong></div><div class="stat"><span>Estimated Profit</span><strong id="profit">৳0</strong></div><div class="stat"><span>Pending Orders</span><strong id="pending">0</strong></div><div class="stat"><span>Coupon Codes</span><strong id="couponCount">0</strong></div>
 </div>
-
-<div id="dashboard" class="hidden">
-<div class="card">
-<h2>Add / Edit Product</h2>
-<form id="productForm">
-<input id="productName" placeholder="Product name" required>
-<input id="productPrice" type="number" min="0" placeholder="Price in Taka" required>
-<input id="productPhoto" type="url" placeholder="Direct image URL (optional)">
-<button type="submit" id="saveBtn">Add Product</button>
-<button type="button" id="cancelEdit" class="secondary hidden">Cancel Edit</button>
-</form>
-<p id="productMessage"></p>
-</div>
-
-<div class="card">
-<h2>All Products</h2>
-<div id="productsList">Loading products...</div>
-</div>
-
-<div class="card">
-<h2>Customer Orders</h2>
-<div id="ordersList">Order system connect korar por ekhane order dekhabe.</div>
-</div>
-
-<button id="logoutBtn" class="danger">Logout</button>
-</div>
-</main>
-
+<div class="panel"><div class="tabs"><button class="active" data-tab="products">Products</button><button data-tab="orders">Orders & Customers</button><button data-tab="coupons">Coupons</button><button data-tab="reports">Sales Report</button><button data-tab="help">Setup / Help</button></div>
+<section id="products"><div class="actions" style="justify-content:space-between;align-items:center"><h2>Product Manager</h2><button id="add">+ Add Product</button></div><p id="msg" class="notice hidden"></p>
+<form id="productForm" class="panel hidden"><h3 id="productTitle">Add Product</h3><input id="pid" type="hidden"><div class="grid">
+<div class="field"><label>Product name *</label><input id="name" required maxlength="100"></div><div class="field"><label>Selling price (BDT) *</label><input id="price" type="number" min="0" required></div>
+<div class="field"><label>Cost price (BDT) — for profit estimate</label><input id="cost" type="number" min="0" value="0"></div><div class="field"><label>Category</label><select id="category"><option>Saree</option><option>Three Piece</option><option>Dress</option><option>Kurti</option><option>New Arrivals</option><option>Other</option></select></div>
+<div class="field"><label>Stock quantity</label><input id="stock" type="number" min="0" value="10"></div><div class="field"><label>Badge</label><input id="badge" placeholder="New Arrival / Best Seller"></div>
+<div class="field wide"><label>Public image URL (HTTPS) *</label><input id="photo" type="url" required placeholder="https://...jpg"><span class="muted">Firebase Storage billing ছাড়া public HTTPS image URL ব্যবহার করো।</span></div>
+<div class="field wide"><label>Description</label><textarea id="description" rows="3"></textarea></div><div class="field"><label>Sizes, comma-separated</label><input id="sizes" placeholder="Free Size, M, L, XL"></div><div class="field"><label class="check"><input id="isFeatured" type="checkbox"> Featured product</label></div></div><div class="actions"><button type="submit">Save Product</button><button type="button" id="cancelProduct" class="alt">Cancel</button></div></form>
+<div class="grid"><div class="field"><label>Search products</label><input id="search" placeholder="Name or category"></div><div class="field"><label>Filter category</label><select id="filter"><option value="">All categories</option><option>Saree</option><option>Three Piece</option><option>Dress</option><option>Kurti</option><option>New Arrivals</option><option>Other</option></select></div></div>
+<div class="tablewrap"><table><thead><tr><th>Product</th><th>Sell / Cost</th><th>Stock</th><th>Category</th><th>Actions</th></tr></thead><tbody id="productRows"></tbody></table></div></section>
+<section id="orders" class="hidden"><div class="actions" style="justify-content:space-between;align-items:center"><h2>Orders & Customers</h2><button id="refreshOrders" class="alt">Refresh</button></div><p id="ordersMsg" class="notice">Orders not loaded yet.</p><div class="tablewrap"><table><thead><tr><th>Order / Date</th><th>Customer</th><th>Details</th><th>Total</th><th>Status</th><th>Update</th></tr></thead><tbody id="orderRows"></tbody></table></div><p class="muted">Only orders stored under Firebase Realtime Database <code>/orders</code> appear here. Messenger-only orders are not automatically saved.</p></section>
+<section id="coupons" class="hidden"><h2>Discount Coupons</h2><p class="muted">Creates coupon records under <code>/coupons</code>. The website must also validate and apply coupons at checkout; saving here alone does not activate discounts on the storefront.</p><form id="couponForm" class="panel"><div class="grid"><div class="field"><label>Coupon code *</label><input id="couponCode" required placeholder="FAMOUS10"></div><div class="field"><label>Discount type</label><select id="couponType"><option value="percent">Percent (%)</option><option value="fixed">Fixed amount (৳)</option></select></div><div class="field"><label>Discount value *</label><input id="couponValue" type="number" min="1" required></div><div class="field"><label>Minimum order (৳)</label><input id="couponMin" type="number" min="0" value="0"></div><div class="field"><label>Usage limit (0 = unlimited)</label><input id="couponLimit" type="number" min="0" value="0"></div><div class="field"><label>Expiry date (optional)</label><input id="couponExpiry" type="date"></div><div class="field"><label class="check"><input id="couponActive" type="checkbox" checked> Active</label></div></div><button type="submit">Save Coupon</button></form><p id="couponMsg" class="notice hidden"></p><div class="tablewrap"><table><thead><tr><th>Code</th><th>Discount</th><th>Min order</th><th>Expiry</th><th>Status</th><th>Action</th></tr></thead><tbody id="couponRows"></tbody></table></div></section>
+<section id="reports" class="hidden"><h2>Sales Report</h2><p class="muted">Sales/profit are estimates from orders saved in Firebase. For accurate profit, each order should contain item costs, shipping costs and discounts.</p><div class="stats"><div class="stat"><span>Delivered revenue</span><strong id="reportSales">৳0</strong></div><div class="stat"><span>Estimated product profit</span><strong id="reportProfit">৳0</strong></div><div class="stat"><span>Delivered orders</span><strong id="deliveredCount">0</strong></div><div class="stat"><span>Cancelled orders</span><strong id="cancelledCount">0</strong></div></div><div class="panel"><h3>Order status summary</h3><div id="statusSummary"></div></div><button id="exportCsv" class="alt">Export visible orders CSV</button><p id="reportMsg" class="muted"></p></section>
+<section id="help" class="hidden"><h2>Setup & Limitations</h2><p>• Admin UID expected: <code id="uidText"></code></p><p>• Product manager expects data at <code>/products</code> with fields name, price, photo, category, stock, cost, featured.</p><p>• Orders manager reads <code>/orders</code>. To save orders, the storefront must write customer/order data there.</p><p>• Coupon manager writes <code>/coupons</code>. Storefront checkout must validate/apply those coupons.</p><p>• Keep database writes admin-only. Never enable public writes for products, orders, or coupons.</p><p id="helpMsg" class="notice"></p></section>
+</div></section></div>
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
-import {
-getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut
-} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
-import {
-getDatabase,ref,push,set,update,remove,onValue
-} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-database.js";
-
-const firebaseConfig={
-apiKey:"AIzaSyDxQ_HUxjEphialKvXm9P2r05pIb87FNy4",
-authDomain:"famous-zone.firebaseapp.com",
-databaseURL:"https://famous-zone-default-rtdb.asia-southeast1.firebasedatabase.app",
-projectId:"famous-zone",
-storageBucket:"famous-zone.firebasestorage.app",
-messagingSenderId:"642469736168",
-appId:"1:642469736168:web:0831ba7583c1f68b7ba35d"
-};
-
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getDatabase(app);
-const ADMIN_UID="PbaNy2hBNKRJCnCEjVzuGsRow5h1";
-const $=id=>document.getElementById(id);
-
-let editingId=null;
-let stopProducts=null;
-let stopOrders=null;
-
-function msg(id,text){$(id).textContent=text;}
-
-function resetForm(){
-editingId=null;
-$("productForm").reset();
-$("saveBtn").textContent="Add Product";
-$("cancelEdit").classList.add("hidden");
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import{getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import{getDatabase,ref,onValue,get,set,update,remove,push}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+const config={apiKey:"AIzaSyDxQ_HUxjEphialKvXm9P2r05pIb87FNy4",authDomain:"famous-zone.firebaseapp.com",databaseURL:"https://famous-zone-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"famous-zone",storageBucket:"famous-zone.firebasestorage.app",messagingSenderId:"642469736168",appId:"1:642469736168:web:0831ba7583c1f68b7ba35d"};
+const ADMIN_UID="PbaNy2hBNKRJCnCEjVzuGsRow5h1",app=initializeApp(config),auth=getAuth(app),db=getDatabase(app),$=id=>document.getElementById(id);
+let user=null,products={},orders={},coupons={},stops=[];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])),money=n=>"৳"+(Number(n)||0).toLocaleString("en-BD");
+function note(id,t,kind=""){const e=$(id);e.textContent=t;e.className="notice "+kind;e.classList.remove("hidden")}
+function watch(path,cb,errId){const stop=onValue(ref(db,path),s=>cb(s.val()||{}),e=>note(errId,path+" load হয়নি: "+e.message,"error"));stops.push(stop)}
+function renderProducts(){let q=$("search").value.toLowerCase(),cat=$("filter").value,rows=Object.entries(products).filter(([id,p])=>(!q||String(p.name||"").toLowerCase().includes(q)||String(p.category||"").toLowerCase().includes(q))&&(!cat||p.category===cat));$("total").textContent=Object.keys(products).length;$("featured").textContent=Object.values(products).filter(p=>!!p.featured).length;$("low").textContent=Object.values(products).filter(p=>Number(p.stock??10)<=2).length;if(!rows.length){$("productRows").innerHTML='<tr><td colspan="5">No products found.</td></tr>';return}$("productRows").innerHTML=rows.map(([id,p])=>`<tr><td><div class="product"><img src="${esc(p.photo||p.image||"")}" onerror="this.style.visibility='hidden'"><div><b>${esc(p.name||"Unnamed")}</b><div class="muted">${esc(p.badge||"")}${p.featured?" · Featured":""}</div></div></div></td><td>${money(p.price)}<div class="muted">Cost ${money(p.cost||0)}</div></td><td><span class="pill ${Number(p.stock??10)<=2?"low":""}">${esc(p.stock??"—")}</span></td><td>${esc(p.category||"Other")}</td><td><div class="actions"><button class="alt" data-edit="${esc(id)}">Edit</button><button class="red" data-delete="${esc(id)}">Delete</button></div></td></tr>`).join("")}
+function clearProduct(){$("productForm").reset();$("pid").value="";$("cost").value=0;$("stock").value=10;$("productTitle").textContent="Add Product"}
+function editProduct(id=""){clearProduct();if(id){let p=products[id];$("pid").value=id;$("name").value=p.name||"";$("price").value=p.price??"";$("cost").value=p.cost??0;$("category").value=p.category||"Other";$("stock").value=p.stock??10;$("photo").value=p.photo||p.image||"";$("description").value=p.description||"";$("sizes").value=Array.isArray(p.sizes)?p.sizes.join(", "):(p.sizes||"");$("badge").value=p.badge||"";$("isFeatured").checked=!!p.featured;$("productTitle").textContent="Edit Product"}$("productForm").classList.remove("hidden");$("productForm").scrollIntoView({behavior:"smooth"})}
+function renderOrders(){const rows=Object.entries(orders).sort((a,b)=>Number(b[1].createdAt||b[1].timestamp||0)-Number(a[1].createdAt||a[1].timestamp||0));$("orderCount").textContent=rows.length;$("pending").textContent=rows.filter(([id,o])=>(o.status||"Pending")==="Pending").length;const delivered=rows.filter(([id,o])=>String(o.status||"").toLowerCase()==="delivered");const sales=delivered.reduce((s,[id,o])=>s+Number(o.total||o.amount||0),0);const profit=delivered.reduce((s,[id,o])=>s+orderProfit(o),0);$("sales").textContent=money(sales);$("profit").textContent=money(profit);$("reportSales").textContent=money(sales);$("reportProfit").textContent=money(profit);$("deliveredCount").textContent=delivered.length;$("cancelledCount").textContent=rows.filter(([id,o])=>String(o.status||"").toLowerCase()==="cancelled").length;
+if(!rows.length){$("orderRows").innerHTML="";note("ordersMsg","/orders-এ কোনো order নেই। Messenger-only orders এখানে নিজে থেকে আসবে না.");}else{$("ordersMsg").classList.add("hidden");$("orderRows").innerHTML=rows.map(([id,o])=>`<tr><td>${esc(id.slice(-8))}<div class="muted">${esc(o.date||(o.createdAt?new Date(o.createdAt).toLocaleString():""))}</div></td><td>${esc(o.customerName||o.name||o.customer||"—")}<div class="muted">${esc(o.phone||"")}</div><div class="muted">${esc(o.address||"")}</div></td><td>${esc(o.itemsText||o.productName||o.items||"—")}</td><td>${money(o.total||o.amount||0)}</td><td>${esc(o.status||"Pending")}</td><td><select data-status="${esc(id)}"><option>Pending</option><option>Confirmed</option><option>Processing</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select><button class="alt" data-save="${esc(id)}">Save</button></td></tr>`).join("");rows.forEach(([id,o])=>{let s=$("orderRows").querySelector(`[data-status="${CSS.escape(id)}"]`);if(s)s.value=o.status||"Pending"})}
+const statuses={};rows.forEach(([id,o])=>{let k=o.status||"Pending";statuses[k]=(statuses[k]||0)+1});$("statusSummary").innerHTML=Object.entries(statuses).map(([k,v])=>`<p>${esc(k)}: <b>${v}</b></p>`).join("")||"No order data";
 }
-
-$("loginBtn").onclick=async()=>{
-msg("loginMessage","Logging in...");
-try{
-const result=await signInWithEmailAndPassword(
-auth,$("email").value.trim(),$("password").value
-);
-if(result.user.uid!==ADMIN_UID){
-await signOut(auth);
-msg("loginMessage","You are not an authorized admin.");
-}
-}catch(e){msg("loginMessage",e.message);}
-};
-
-onAuthStateChanged(auth,user=>{
-if(user&&user.uid===ADMIN_UID){
-$("loginBox").classList.add("hidden");
-$("dashboard").classList.remove("hidden");
-startListeners();
-}else{
-$("loginBox").classList.remove("hidden");
-$("dashboard").classList.add("hidden");
-}
-});
-
-function startListeners(){
-if(stopProducts)stopProducts();
-if(stopOrders)stopOrders();
-
-stopProducts=onValue(ref(db,"products"),snap=>{
-renderProducts(snap.val()||{});
-},error=>msg("productMessage",error.message));
-
-stopOrders=onValue(ref(db,"orders"),snap=>{
-const orders=snap.val()||{};
-const box=$("ordersList");
-box.replaceChildren();
-const entries=Object.entries(orders);
-if(!entries.length){
-box.textContent="No orders found.";
-return;
-}
-entries.forEach(([id,o])=>{
-const item=document.createElement("div");
-item.className="item";
-const title=document.createElement("h3");
-title.textContent=o.customerName||o.name||"Customer order";
-const info=document.createElement("p");
-info.textContent="Phone: "+(o.phone||"-")+" | Address: "+(o.address||"-");
-const status=document.createElement("select");
-["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].forEach(s=>{
-const opt=document.createElement("option");
-opt.value=s;opt.textContent=s;
-if((o.status||"Pending")===s)opt.selected=true;
-status.append(opt);
-});
-status.onchange=async()=>{
-try{await update(ref(db,"orders/"+id),{status:status.value});}
-catch(e){alert("Order update failed: "+e.message);}
-};
-item.append(title,info,status);
-box.append(item);
-});
-},error=>{
-$("ordersList").textContent="Orders database rules need to be configured.";
-});
-}
-
-function renderProducts(products){
-const box=$("productsList");
-box.replaceChildren();
-const entries=Object.entries(products);
-if(!entries.length){
-box.textContent="No products yet.";
-return;
-}
-entries.forEach(([id,p])=>{
-const item=document.createElement("div");
-item.className="item";
-if(p.photo){
-const img=document.createElement("img");
-img.src=p.photo;img.alt=p.name||"Product";
-img.onerror=()=>img.style.display="none";
-item.append(img);
-}
-const title=document.createElement("h3");
-title.textContent=p.name||"Product";
-const price=document.createElement("p");
-price.textContent="Price: ৳"+(p.price??"");
-const actions=document.createElement("div");
-actions.className="actions";
-const edit=document.createElement("button");
-edit.textContent="Edit";
-edit.onclick=()=>{
-editingId=id;
-$("productName").value=p.name||"";
-$("productPrice").value=p.price??"";
-$("productPhoto").value=p.photo||"";
-$("saveBtn").textContent="Update Product";
-$("cancelEdit").classList.remove("hidden");
-window.scrollTo({top:0,behavior:"smooth"});
-};
-const del=document.createElement("button");
-del.textContent="Delete";
-del.className="danger";
-del.onclick=async()=>{
-if(!confirm("Delete this product?"))return;
-try{
-await remove(ref(db,"products/"+id));
-msg("productMessage","Product deleted.");
-if(editingId===id)resetForm();
-}catch(e){msg("productMessage",e.message);}
-};
-actions.append(edit,del);
-item.append(title,price,actions);
-box.append(item);
-});
-}
-
-$("productForm").onsubmit=async e=>{
-e.preventDefault();
-const name=$("productName").value.trim();
-const price=Number($("productPrice").value);
-const photo=$("productPhoto").value.trim();
-if(!name||price<0||!Number.isFinite(price))return;
-$("saveBtn").disabled=true;
-try{
-const data={name,price,photo};
-if(editingId){
-await update(ref(db,"products/"+editingId),data);
-msg("productMessage","Product updated successfully.");
-}else{
-await set(push(ref(db,"products")),data);
-msg("productMessage","Product added successfully.");
-}
-resetForm();
-}catch(e){msg("productMessage","Error: "+e.message);}
-finally{$("saveBtn").disabled=false;}
-};
-
-$("cancelEdit").onclick=resetForm;
-
-$("logoutBtn").onclick=async()=>{
-if(stopProducts)stopProducts();
-if(stopOrders)stopOrders();
-await signOut(auth);
-};
-
-</script>
-</body>
-</html>
+function orderProfit(o){if(o.profit!==undefined)return Number(o.profit)||0;if(o.items&&Array.isArray(o.items))return o.items.reduce((sum,it)=>sum+(Number(it.price||0)-Number(it.cost||0))*Number(it.quantity||it.qty||1),0);return Number(o.estimatedProfit||0)}
+function renderCoupons(){let rows=Object.entries(coupons);$("couponCount").textContent=rows.length;$("couponRows").innerHTML=rows.length?rows.map(([id,c])=>`<tr><td><b>${esc(c.code||id)}</b></td><td>${c.type==="fixed"?money(c.value):esc(c.value)+"%"}</td><td>${money(c.minOrder||0)}</td><td>${esc(c.expiry||"—")}</td><td>${c.active?'<span class="pill">Active</span>':'<span class="pill low">Inactive</span>'}</td><td><button class="red" data-coupon-delete="${esc(id)}">Delete</button></td></tr>`).join(""):'<tr><td colspan="6">No coupons yet.</td></tr>'}
+$("loginBtn").onclick=async()=>{try{await signInWithEmailAndPassword(auth,$("em").value.trim(),$("pw").value)}catch(e){note("loginMsg","Login হয়নি: "+e.message,"error")}};$("logout").onclick=()=>signOut(auth);
+onAuthStateChanged(auth,u=>{user=u;if(!u){$("login").classList.remove("hidden");$("app").classList.add("hidden");$("logout").classList.add("hidden");stops.forEach(f=>f());stops=[];return}$("login").classList.add("hidden");$("app").classList.remove("hidden");$("logout").classList.remove("hidden");$("email").textContent=u.email||"Admin";$("uidText").textContent=ADMIN_UID;$("helpMsg").textContent="Signed in UID: "+u.uid+(u.uid===ADMIN_UID?" (configured admin)":" — এটি configured admin UID নয়; write permission ব্যর্থ হতে পারে।");watch("products",v=>{products=v;renderProducts()},"msg");watch("orders",v=>{orders=v;renderOrders()},"ordersMsg");watch("coupons",v=>{coupons=v;renderCoupons()},"couponMsg");if(u.uid!==ADMIN_UID)note("msg","সতর্কতা: logged-in UID configured admin UID-এর সঙ্গে মেলে না।","error")});
+$("add").onclick=()=>editProduct();$("cancelProduct").onclick=()=>{$("productForm").classList.add("hidden");clearProduct()};$("search").oninput=renderProducts;$("filter").onchange=renderProducts;
+$("productRows").onclick=async e=>{let a=e.target.closest("[data-edit]"),d=e.target.closest("[data-delete]");if(a){editProduct(a.dataset.edit);return}if(d&&confirm("এই product delete করবে?"))try{await remove(ref(db,"products/"+d.dataset.delete));note("msg","Product delete হয়েছে।","success")}catch(err){note("msg","Delete হয়নি: "+err.message,"error")}};
+$("productForm").onsubmit=async e=>{e.preventDefault();if(!user||user.uid!==ADMIN_UID){note("msg","Admin UID অনুমোদিত নয়।","error");return}try{const photo=$("photo").value.trim(),url=new URL(photo),name=$("name").value.trim(),price=Number($("price").value),cost=Number($("cost").value)||0;if(url.protocol!=="https:"||!name||price<0||!Number.isFinite(price))throw Error("নাম, price ও HTTPS image URL ঠিক করো");let id=$("pid").value||push(ref(db,"products")).key,p={name,price,cost,photo,category:$("category").value,stock:Math.max(0,Number($("stock").value)||0),description:$("description").value.trim(),sizes:$("sizes").value.split(",").map(s=>s.trim()).filter(Boolean),badge:$("badge").value.trim(),featured:$("isFeatured").checked,updatedAt:Date.now()};if(!products[id])p.createdAt=Date.now();await set(ref(db,"products/"+id),p);note("msg","Product save হয়েছে।","success");$("productForm").classList.add("hidden");clearProduct()}catch(err){note("msg","Save হয়নি: "+err.message+" — Firebase Rules/UID চেক করো।","error")}};
+document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-tab]").forEach(x=>x.classList.toggle("active",x===b));["products","orders","coupons","reports","help"].forEach(id=>$(id).classList.toggle("hidden",id!==b.dataset.tab))});
+$("refreshOrders").onclick=async()=>{try{let s=await get(ref(db,"orders"));orders=s.val()||{};renderOrders()}catch(e){note("ordersMsg","Orders load হয়নি: "+e.message,"error")}};
+$("orderRows").onclick=async e=>{let b=e.target.closest("[data-save]");if(!b)return;let id=b.dataset.save,s=$("orderRows").querySelector(`[data-status="${CSS.escape(id)}"]`);try{await update(ref(db,"orders/"+id),{status:s.value,updatedAt:Date.now()});note("ordersMsg","Order status update হয়েছে।","success")}catch(err){note("ordersMsg","Update হয়নি: "+err.message+" — /orders rules অনুমতি প্রয়োজন।","error")}};
+$("couponForm").onsubmit=async e=>{e.preventDefault();if(!user||user.uid!==ADMIN_UID){note("couponMsg","Admin UID অনুমোদিত নয়।","error");return}le
